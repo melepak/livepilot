@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#0b1020" />
+  <title>LivePilot — TikTok Live Companion</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">LP</div>
+        <div>
+          <h1>LivePilot</h1>
+          <p>TikTok Live companion dashboard</p>
+        </div>
+      </div>
+      <div class="status-pill" id="liveStatus">Demo mode</div>
+    </header>
+
+    <section class="hero card">
+      <div>
+        <span class="eyebrow">LIVE CONTROL CENTER</span>
+        <h2>Run a smoother live without juggling notes, goals and comments.</h2>
+        <p>Keep your talking points, engagement goals, quick actions and live notes in one screen beside TikTok Live.</p>
+      </div>
+      <button class="primary" id="startSessionBtn">Start Session</button>
+    </section>
+
+    <section class="grid">
+      <article class="card stats-card">
+        <div class="section-head"><h3>Session</h3><span id="timer">00:00:00</span></div>
+        <div class="stats">
+          <div><strong id="viewerCount">0</strong><span>Viewers</span></div>
+          <div><strong id="likeCount">0</strong><span>Likes</span></div>
+          <div><strong id="giftCount">0</strong><span>Gifts</span></div>
+          <div><strong id="commentCount">0</strong><span>Comments</span></div>
+        </div>
+        <div class="quick-row">
+          <button data-add="viewerCount">+ Viewer</button>
+          <button data-add="likeCount" data-step="10">+10 Likes</button>
+          <button data-add="giftCount">+ Gift</button>
+          <button data-add="commentCount">+ Comment</button>
+        </div>
+      </article>
+
+      <article class="card goals-card">
+        <div class="section-head"><h3>Live Goals</h3><button class="ghost" id="resetGoalsBtn">Reset</button></div>
+        <label>Like goal <span id="likeGoalText">0 / 1,000</span></label>
+        <progress id="likeGoal" max="1000" value="0"></progress>
+        <label>Gift goal <span id="giftGoalText">0 / 20</span></label>
+        <progress id="giftGoal" max="20" value="0"></progress>
+      </article>
+
+      <article class="card rundown-card">
+        <div class="section-head"><h3>Run of Show</h3><button class="ghost" id="addTopicBtn">+ Topic</button></div>
+        <div id="topicList" class="topic-list"></div>
+      </article>
+
+      <article class="card prompts-card">
+        <div class="section-head"><h3>Engagement Prompts</h3><button class="ghost" id="shufflePromptBtn">Shuffle</button></div>
+        <div class="prompt-box" id="promptBox">Ask viewers where they are watching from.</div>
+        <div class="prompt-tags">
+          <button data-prompt="Welcome new viewers and quickly explain what this live is about.">Welcome</button>
+          <button data-prompt="Ask: Which one would you pick — A or B?">Poll</button>
+          <button data-prompt="Remind viewers to follow if they want part 2.">CTA</button>
+          <button data-prompt="Thank recent gifters by name.">Gifts</button>
+        </div>
+      </article>
+
+      <article class="card notes-card">
+        <div class="section-head"><h3>Live Notes</h3><button class="ghost" id="clearNotesBtn">Clear</button></div>
+        <textarea id="notes" placeholder="Type reminders, product details, promo codes, viewer questions…"></textarea>
+      </article>
+
+      <article class="card comments-card">
+        <div class="section-head"><h3>Comment Queue</h3><span class="mini">manual V1</span></div>
+        <form id="commentForm">
+          <input id="commentName" placeholder="Viewer name" />
+          <input id="commentText" placeholder="Question or comment" required />
+          <button class="primary small" type="submit">Add</button>
+        </form>
+        <div id="commentQueue" class="comment-queue"></div>
+      </article>
+    </section>
+
+    <footer>
+      <p><strong>V1:</strong> Companion dashboard only. Direct TikTok Live data connection can be added later where officially supported.</p>
+    </footer>
+  </main>
+
+  <dialog id="topicDialog">
+    <form method="dialog" id="topicForm">
+      <h3>Add talking point</h3>
+      <input id="topicInput" placeholder="e.g. Demo product features" required />
+      <div class="dialog-actions">
+        <button value="cancel" class="ghost">Cancel</button>
+        <button value="default" class="primary" id="saveTopicBtn">Add</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
